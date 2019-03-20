@@ -13,57 +13,56 @@ namespace cs273{
     class Queue{
     private:
         std::list<t> Whatever;
-        int cap;
     public:
+        
+        //initilazes whatever as list from empty constructor
         Queue(){
-            cap = 0;
             std::list<t> Whatever;
         }
 
+        //destructs whatever and queue
         ~Queue(){
             while(! Whatever.empty()){
                 Whatever.pop_front();
             }
         }
 
-        Queue(const Queue<t> &l){
-            std::list<t> temp = getList();
-            Queue<t>::iterator ptr = temp.begin();
-            while(ptr < temp.size()){
-                //we only have access to the front
-                Whatever.push(temp.front());
-                temp.pop_front();
-                ptr++;
-            } 
+        //initializes whatever with copy constructor
+        //input: l, reference queue
+        Queue( Queue<t> &l){
+            Whatever = l.Whatever;
         }
 
+        //assignment operator
+        //input: const queue l
         Queue &operator=(const Queue<t> &l){
            this(l);
            return *this;
         }
 
-        int sizeLength(){
+        //returns size of list(whatever)
+        int size(){
             return Whatever.size();
         }
 
+        //pushes element onto list(whatever)
         void push(t element){
             Whatever.push_back(element);
         }
 
+        //removes the front element from list(whatever)
         void pop(){
             Whatever.pop_front();
         }
 
+        //returns front element from list(whatever)
         t &front(){
             Whatever.front();
         }
 
+        //checks if list(whatever) contains something
         bool isEmpty(){
             Whatever.empty();
-        }
-
-        std::list<t> getList(){
-            return Whatever;
         }
 
     };
